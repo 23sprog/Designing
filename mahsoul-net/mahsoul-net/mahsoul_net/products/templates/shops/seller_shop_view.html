@@ -1,0 +1,55 @@
+{% extends "admin_panel_based/based.html" %}
+{% load static %}
+{% block title %}فروشگاه من{% endblock %}
+{% block style %} 
+    
+    <link rel="stylesheet" href="{% static "shops/shop_view.css" %}">
+    <link rel="stylesheet" href="{% static "fonts/rank-font/rank-font.css" %}">
+{% endblock %}
+{% block content %}
+        {% for shop in shops %}
+            <div class="top-section">
+                <h1 class="shop-title">{{ shop.name }}</h1>
+                {% if shop.is_active %}
+                    <div class="shop-is-active active">
+                        <p class="is-active-text">در سایت وجود دارد</p>
+                        <p class="is-active-lamp"></p>
+                    </div>
+                {% else %}
+                    <div class="shop-is-active disabled">
+                        <p class="is-active-text">در سایت وجود ندارد</p>
+                        <p class="is-active-lamp"></p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="botton-section">
+                <div class="shop-container">
+                    <p class="shop-seller">{{ shop.seller }}</p>
+                    {% if shop.rank_shop == "a" %}
+                        <h2 class="shop-position a-rank">A</h2>
+                    {% elif shop.rank_shop == "b" %}
+                        <h2 class="shop-position b-rank">B</h2>
+                    {% elif shop.rank_shop == "c" %}
+                        <h2 class="shop-position c-rank">C</h2>
+                    {% elif shop.rank_shop == "d" %}
+                        <h2 class="shop-position d-rank">D</h2>
+                    {% elif shop.rank_shop == "e" %}
+                        <h2 class="shop-position e-rank">E</h2>
+                    {% elif shop.rank_shop == "f" %}
+                        <h2 class="shop-position f-rank">F</h2>
+                    {% else %}
+                        <h2 class="shop-position o-rank">O</h2>
+                    {% endif %}
+                </div>
+                <p class="shop-description">{{ shop.description|truncatewords:20 }}</p>
+            </div>
+            <div class="btn-section">
+                <a href="{% url 'products:seller_update_shop' shop.id %}" class="btn">بروزرسانی فروشگاه</a>
+                <a href="{% url 'products:delete_shop' shop.id %}" class="btn">حذف فروشگاه</a>
+                {% if shop.is_active == True %}
+                    <a href="{% url 'products:detail_shop' shop.id %}" class="btn">نمایش فروشگاه در سایت</a>
+                {% endif %}
+            </div>
+        {% empty %}
+        {% endfor %}
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "admin_panel_based/based.html" %}
+{% load static %}
+
+	{% block title %}
+        {% if request.resolver_match.url_name == "create_product" %}
+            اضافه کردن محصول
+
+        {% else %}
+            بروزرسانی محصول
+        {% endif %}
+        {% endblock %}
+
+
+{% block style %}    <link rel="stylesheet" href="{% static "products/styles/product_create.css" %}">{% endblock %}
+{% block content %}
+            <form action="" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+                <div class="row-1">
+                    <label for="create-name" class="text-name-label">{{ form.name.label }}</label>
+                    {{ form.name }}
+{#                    <input type="text" class="textbox-based create-text-normal" id="create-name" name="name">#}
+                    <span class="validator-based name-validator">{{ form.name.errors|first }}</span>
+{#                    <label for="create-slug" class="text-slug-label">{{ form.slug.label }}</label>#}
+{#                    {{ form.slug }}#}
+{#                    <input type="text" class="textbox-based create-text-normal" id="create-slug" name="slug">#}
+{#                    <span class="validator-based slug-validator">{{ form.slug.errors|first }}</span>#}
+
+                </div>
+                <div class="row-2">
+                    <label for="create-price" class="text-price-label">{{ form.price.label }}</label>
+                    {{ form.price }}
+{#                    <input type="number" class="textbox-based textbox-price create-text-large" id="create-price" name="price">#}
+                    <span class="validator-based price-validator">{{ form.price.errors|first }}</span>
+
+                </div>
+                <div class="row-3">
+                    <label for="category-selector" class="text-category-label">دسته بندی</label>
+                    {{ form.category }}
+{#                    <select id="category-selector" name="category" class="textbox-based create-text-normal">#}
+{#                        {% for category in categories %}#}
+{#                            <option value="{{ category.id }}">{{ category.name }}</option>#}
+{#                        {% endfor %}#}
+{#                    </select>#}
+                    <label for="image-product" class="text-image-label">{{ form.img.label }}</label>
+                    {{ form.img }}
+{#                    <input type="file" id="image-product" name="img" accept="image/png, image/gif, image/jpeg">#}
+                    <span class="validator-based image-validator">{{ form.img.errors|first }}</span>
+
+                </div>
+                <div class="row-4">
+                    <label for="editor" class="text-description-label">{{ form.description.label }}</label>
+                    {{ form.description }}
+                </div>
+                {% if request.user.is_superuser %}
+                    <div class="row-7">
+                        <label for="shop-selector" class="text-shop-label">{{ form.shop.label }}</label>
+                        {{ form.shop }}
+    {#                    <select id="shop-selector" name="shop" class="textbox-based create-text-large">#}
+    {#                        <option value="1">شیرینی</option>#}
+    {#                        <option value="2">خشکبار</option>#}
+    {#                        <option value="3">تنقلات</option>#}
+    {#                    </select>#}
+                    </div>
+                {% endif %}
+                <div class="row-5">
+                    <div class="has-weight-container">
+                        <label for="has-weight-product" class="text-weight-label">{{ form.has_weight.label }}</label>
+                        {{ form.has_weight }}
+{#                        <input type="checkbox" class="checkbox-based" id="has-weight-product" name="has_weight">#}
+                    </div>
+                    <div class="is-active-container">
+                        <label for="is-active-product" class="text-active-label">{{ form.is_active.label }}</label>
+                        {{ form.is_active }}
+{#                        <input type="checkbox" class="checkbox-based" id="is-active-product" name="is_active">#}
+                    </div>
+
+                </div>
+                <div class="row-6">
+                    {% if request.resolver_match.url_name == "create_product" %}
+                        <input type="submit" class="create-btn" value="اضافه کردن محصول">
+                    {% else %}
+                        <input type="submit" class="create-btn" value="بروزرسانی محصول">
+                    {% endif %}
+                </div>
+
+
+            </form>
+{% endblock %}

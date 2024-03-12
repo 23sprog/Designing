@@ -1,0 +1,58 @@
+{% load static %}
+{% load to_persian_number %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'fonts/sahel-font-v3.4.0/sahel-fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'index/styles/header-style.css' %}">
+    {% block style %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'index/styles/navbar-footer.css' %}">
+</head>
+<body>
+    {% include "index/../inc/main_site/navbar.html" %}
+    {% block header %}{% endblock %}
+    <div class="main-content">
+        <section class="main-section">
+            {% filter_products %}
+            {% top_3_sweets %}
+            {% top_3_snacks %}
+            {% top_3_nuts %}
+        </section>
+        <div class="content-overall">
+            {% block shop_container %}{% endblock %}
+            <div class="content-list">
+                {% if pagin.page_obj %}
+                	{% for product in pagin.this_page.object_list %}
+                        <div class="content-box">
+                            <div class="content-box-child">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{{ product.img.url }}" class="container-image" alt="{{ product.name }}-IMAGE">
+                                    <div class="content-texts">
+                                        <h4 class="content-titles">{{ product.name }}</h4>
+                                        <p class="content-paragraph">{{ product.description|truncatewords:10 }}</p>
+                                    </div>
+                                </a>
+                                <div class="shop-container">
+                                    {% cities_product product.id %}
+                                    <a href="{{ product.get_absolute_url }}">
+                                        <p class="price-text"><span class="price-toman-label"></span>{{ product.price|to_persian_price }}</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% block content %}
+            	
+            {% endblock %}
+        </div>
+    </div>
+    {% include "index/footer.html" %}
+</body>
+</html>

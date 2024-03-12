@@ -1,0 +1,125 @@
+{#<!doctype html>#}
+{#<html lang="fa" dir="rtl">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">#}
+{#    <meta http-equiv="X-UA-Compatible" content="ie=edge">#}
+{#    <title>Header</title>#}
+{#    <meta name='viewport' content='width=device-width, initial-scale=1'>#}
+{#    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>#}
+{#    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>#}
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
+{#    <link rel="stylesheet" href="../fonts/sahel-font-v3.4.0/sahel-fonts.css">#}
+{#    <link rel="stylesheet" href="styles/ticket-list.css">#}
+{#</head>#}
+{#<body>#}
+{#    <nav class="navbar">#}
+{#        <div class="items">#}
+{#            <div class="logo">#}
+{#                <img src="img/logo-black-bold.png" alt="">#}
+{#            </div>#}
+{#            <ul class="nav-link-list">#}
+{#                <li class="nav-link"><a href="">صفحه اصلی</a></li>#}
+{#                <li class="nav-link"><a href="">فروشگاه</a></li>#}
+{#                <li class="nav-link"><a href="">ثبت نام</a></li>#}
+{#                <li class="nav-link"><a href="">ورود</a></li>#}
+{#            </ul>#}
+{#        </div>#}
+{##}
+{#        <div class="nav-search">#}
+{#            <form action="" method="get">#}
+{#                <button class="search-btn"><i class="fa fa-search"></i></button>#}
+{#                <input type="search" class="search-input">#}
+{#            </form>#}
+{#        </div>#}
+{#    </nav>#}
+{##}
+{#    <div class="admin-panel">#}
+{#        <input type="checkbox" class="admin-sidebar-checkbox" id="admin-checkbox">#}
+{#        <div class="admin-panel-sidebar">#}
+{#            <div class="admin-panel-sidebar-group">#}
+{#                <label for="admin-checkbox" class="admin-sidebar-checkbox-label"><i class='fa fa-angle-double-left'></i></label>#}
+{#                <ul>#}
+{#                    <li class="admin-panel-sidebar-item active"><a href=""><i class="fa fa-user admin-sidebar-icon"></i><span>پروفایل</span></a></li>#}
+{#                    <li class="admin-panel-sidebar-item"><a href=""><i class="fa fa-shopping-cart admin-sidebar-icon"></i><span>فروشگاه من</span></a></li>#}
+{#                    <li class="admin-panel-sidebar-item"><a href=""><i class="fa fa-list-alt admin-sidebar-icon"></i><span>محصولات من</span></a></li>#}
+{#<!--                    <li class="admin-panel-sidebar-item"><a href=""><i class="fa fa-search admin-sidebar-icon"></i><span>آیتم1</span></a></li>-->#}
+{#<!--                    <li class="admin-panel-sidebar-item"><a href=""><i class="fa fa-search admin-sidebar-icon"></i><span>آیتم2</span></a></li>-->#}
+{#                    <li class="admin-panel-sidebar-item"><a href=""><i class="fa fa-sign-out admin-sidebar-icon"></i><span>خروج</span></a></li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="admin-panel-content">#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#</body>#}
+{#</html>#}
+
+{% extends "admin_panel_based/based.html" %}
+{% load static %}
+{% load to_persian_number %}
+
+{% block title %}
+	تیکت ها
+{% endblock %}
+
+{% block style %}
+	    <link rel="stylesheet" href="{% static "tickets/styles/ticket-list.css" %}">
+{% endblock %}
+
+{% block content %}
+    {% for ticket in pagin.this_page.object_list %}
+        <div class="main-container">
+            <div class="top-container">
+                <h2>{{ ticket.requested_user.username }}</h2>
+            </div>
+            <div class="middle-container">
+                <p>{{ ticket.user_text_message }}</p>
+            </div>
+            <div class="bottom-container">
+                <a class="btn btn-green" href="{% url 'accounts:ticket_admin_accept' id=ticket.id %}">تایید کردن</a>
+                <a class="btn btn-red" href="{% url 'accounts:ticket_admin_form' id=ticket.id %}">رد کردن</a>
+            </div>
+        </div>
+    {% empty %}
+        <h3 class="empty-alert">هیچ تیکتی وجود ندارد!</h3>    
+    {% endfor %}
+    {% if pagin.this_page.object_list %}
+        <div class="pagination">
+            <ul>
+                {% if pagin.before_previous_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'accounts:ticket_list' page=pagin.before_previous_page.number %}">
+                        {{ pagin.before_previous_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if pagin.previous_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'accounts:ticket_list' page=pagin.previous_page.number %}">
+                        {{ pagin.previous_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="pagination-item disabled"><a href="#">{{ pagin.this_page.number|to_persian }}</a></li>
+                {% if pagin.next_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'accounts:ticket_list' page=pagin.next_page.number %}">
+                        {{ pagin.next_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if pagin.after_next_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'accounts:ticket_list' page=pagin.after_next_page.number %}">
+                        {{ pagin.after_next_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
+

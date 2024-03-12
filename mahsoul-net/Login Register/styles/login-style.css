@@ -1,0 +1,215 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: Sahel;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to left,white 0%, #e8e8e8 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.container{
+    width: 100%;
+    max-width: 1050px;
+    height: 75%;
+    max-height: 750px;
+    /*background-color: darkcyan;*/
+    display: flex;
+    border-radius: 20px;
+    border: 3px solid #BD3333;
+    position: relative;
+    background-color: rgba(255,255,255,.1);
+    backdrop-filter: blur(15px);
+}
+
+.triangle-1{
+    width: 600px;
+    height: 600px;
+    background-color: #464646;
+    /*border-radius: 10px;*/
+    position: fixed;
+    top: -23px;
+    right: 318px;
+    z-index: -1;
+    clip-path: polygon(50% 0%, 0 100%, 100% 100%);
+    transform: rotate(55deg);
+}
+
+.triangle-2{
+    width: 800px;
+    height: 800px;
+    background-color: #464646;
+    /*border-radius: 10px;*/
+    position: fixed;
+    top: -173px;
+    right: -177px;
+    z-index: -1;
+    clip-path: polygon(50% 0%, 0 100%, 100% 100%);
+    transform: rotate(-125deg);
+}
+
+.image{
+    /*background: url("img/online-shopping.png");*/
+    width: 40%;
+    height: 100%;
+    /*background-position: center;*/
+    /*background-size: cover;*/
+    border-radius: 15px 0 0 15px;
+    /*z-index: -1;*/
+    overflow: hidden;
+}
+
+.image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.form-inputs{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+
+}
+.form-inputs form{
+    width: 70%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.logo{
+    align-self: center;
+    height: 20%;
+}
+
+.logo img{
+    width: 305px;
+
+}
+
+.submit-btn{
+    font-family: Sahel;
+    font-weight: 500;
+    font-size: 20px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #BD3333;
+    border: none;
+    color: #fff;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.submit-btn:hover{
+    background-color: #ff4949;
+
+}
+
+.inputs-text{
+    height: 40px;
+    border-radius: 15px;
+    border: 2px #fff solid;
+    padding: 0 7px;
+    font-size: 15px;
+}
+
+.form-inputs form input{
+    background-color: transparent;
+    color: #fff;
+    outline: 5px solid transparent;
+    transition: 250ms all;
+}
+
+.form-inputs form input:focus, .form-inputs form input:active{
+    color: #fff;
+    outline: none;
+    border: 2px #BD3333 solid;
+    outline: 5px solid rgba(189, 51, 51, 0.37);
+}
+
+.form-inputs form label{
+    color: #fff;
+}
+
+.control-list{
+    width: 150px;
+    /*background-color: blue;*/
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    position: absolute;
+    border-radius: 7px;
+    top: 85.5%;
+    right: 10%;
+    overflow: hidden;
+}
+
+.control-item{
+    width: 50%;
+    height: 100%;
+    align-self: center;
+    font-size: 15px;
+    transition: all .2s;
+    background-color: #464646;
+    backdrop-filter: blur(15px);
+    opacity: .7;
+    cursor: not-allowed;
+}
+
+.control-item.active{
+    cursor: pointer;
+    background-color: #BD3333;
+    opacity: 1;
+}
+
+.control-item a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: white;
+    pointer-events: none;
+}
+
+
+.control-item.active a{
+    color: #fff;
+    visibility: visible;
+    pointer-events: visible;
+}
+.control-item.active:hover{
+    background-color: #464646;
+}
+
+
+
+.alarm-validator{
+    color: #ff8484;
+}

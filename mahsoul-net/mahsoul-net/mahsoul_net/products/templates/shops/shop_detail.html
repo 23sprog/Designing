@@ -1,0 +1,85 @@
+{% extends "index/base.html" %}
+{% load static %}
+{% load to_persian_number %}
+
+{% block title %}
+	{{ shop.name }}
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static "fonts/rank-font/rank-font.css" %}">
+	<link rel="stylesheet" href="{% static "shops/shop_detail.css" %}">
+    
+{% endblock %}
+
+{% block shop_container %}
+    <div class="shop-detail-container">
+        <img src="{{ shop.img.url }}" class="shop-img">
+        <h2 class="shop-name">{{ shop.name }}<hr></h2>
+        <p class="shop-rank">
+            {% if shop.rank_shop == "a" %}
+                <span class="shop-position a-rank">A</span>
+            {% elif shop.rank_shop == "b" %}
+                <span class="shop-position b-rank">B</span>
+            {% elif shop.rank_shop == "c" %}
+                <span class="shop-position c-rank">C</span>
+            {% elif shop.rank_shop == "d" %}
+                <span class="shop-position d-rank">D</span>
+            {% elif shop.rank_shop == "e" %}
+                <span class="shop-position e-rank">E</span>
+            {% elif shop.rank_shop == "f" %}
+                <span class="shop-position f-rank">F</span>
+            {% else %}
+                <span class="shop-position o-rank">O</span>
+            {% endif %}
+        </p>
+        <p class="shop-description">{{ shop.description }}</p>
+        <p class="shop-loacation">
+            <i class="fa fa-map-marker"></i>
+            {% for city in cities %}
+                <a href="{% url 'city_category' id=city.id %}"><span>{{ city.name }}،</span></a>
+            {% endfor %}
+        </p>
+    </div>	
+{% endblock %}
+
+
+
+
+{% block content %}
+    {% if pagin.page_obj %}
+        <div class="pagination">
+            <ul>
+                {% if pagin.before_previous_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'products:detail_shop' id=shop.id %}page/{{ pagin.before_previous_page.number }}">
+                        {{ pagin.before_previous_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if pagin.previous_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'products:detail_shop' id=shop.id %}page/{{ pagin.previous_page.number }}">
+                        {{ pagin.previous_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="pagination-item disabled"><a href="#">{{ pagin.this_page.number|to_persian }}</a></li>
+                {% if pagin.next_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'products:detail_shop' id=shop.id %}page/{{ pagin.next_page.number }}">
+                        {{ pagin.next_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if pagin.after_next_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'products:detail_shop' id=shop.id %}page/{{ pagin.after_next_page.number }}">
+                        {{ pagin.after_next_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

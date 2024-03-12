@@ -1,0 +1,46 @@
+{% extends "index/base.html" %}
+{% load static %}
+{% load to_persian_number %}
+
+{% block title %}
+	فیلتر محصولات
+{% endblock %}
+
+
+{% block content %}
+    {% if pagin.page_obj %}
+        <div class="pagination">
+            <ul>
+                {% if pagin.before_previous_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'product_filter_main_page' %}page/{{ pagin.before_previous_page.number }}?city={{ obj_get.shop_city }}&shop_name={{ obj_get.shop_id }}&category={{ obj_get.category }}">
+                        {{ pagin.before_previous_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if pagin.previous_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'product_filter_main_page' %}page/{{ pagin.previous_page.number }}?city={{ obj_get.shop_city }}&shop_name={{ obj_get.shop_id }}&category={{ obj_get.category }}">
+                        {{ pagin.previous_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="pagination-item disabled"><a href="#">{{ pagin.this_page.number|to_persian }}</a></li>
+                {% if pagin.next_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'product_filter_main_page' %}page/{{ pagin.next_page.number }}?city={{ obj_get.shop_city }}&shop_name={{ obj_get.shop_id }}&category={{ obj_get.category }}">
+                        {{ pagin.next_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if pagin.after_next_page != False %}
+                    <li class="pagination-item">
+                        <a href="{% url 'product_filter_main_page' %}page/{{ pagin.after_next_page.number }}?city={{ obj_get.shop_city }}&shop_name={{ obj_get.shop_id }}&category={{ obj_get.category }}">
+                        {{ pagin.after_next_page.number|to_persian }}
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

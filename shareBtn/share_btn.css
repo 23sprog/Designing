@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family:'Poppins' ;
+    background-color: #0984e3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.share_section{
+    position: relative;
+}
+
+#share_{
+    display: none;
+}
+
+.share_section label{
+    background: #fff;
+    font-size: 29px;
+    font-weight: 450;
+    padding: 19px 38px;
+    border-radius: 33px;
+    cursor: pointer;
+    color: #0984e3;
+    width: 175px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: all .3s;
+}
+
+.share_section label:hover{
+    letter-spacing: 2px;
+
+}
+
+.share_icons{
+    background: #fff;
+    display: flex;
+    width: 212px;
+    justify-content: space-between;
+    padding: 19px 38px;
+    border-radius: 28px;
+    position: absolute;
+    top: -112px;
+    left: -23px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 350ms ease;
+}
+
+.share_icons::before{
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    position: absolute;
+    transform: rotate(45deg) translateX(-50%);
+    left: 50%;
+    bottom: -21px;
+    z-index: -2;
+}
+
+.share_icons a i{
+    font-size: 22px;
+    color: #0984e3;
+    transition: all 350ms ease;
+}
+
+.share_icons a i:hover{
+    transform: translateY(-3px);
+    color: brown;
+}
+
+#share_:checked ~ .share_icons{
+    top: -92px;
+    opacity: 1;
+    pointer-events: visible;
+}

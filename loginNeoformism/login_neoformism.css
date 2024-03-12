@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: #E4EBF5;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_section{
+    width: 390px;
+    height: 580px;
+    box-shadow: .3rem .3rem .6rem #c8d0e7 , -.3rem -.3rem .6rem #fff;
+    border-radius: 25px;
+    padding: 40px 20px;
+}
+
+.login_img{
+    width: 140px;
+    height: 140px;
+    margin: 3rem auto;
+    box-shadow: inset.3rem .3rem .6rem #c8d0e7 , inset -.3rem -.3rem .6rem #fff;
+    padding: 14px;
+    border-radius: 100%;
+}
+
+.login_img img{
+    width: 100%;
+}
+
+.form_control{
+    margin-bottom: 2rem;
+    height: 40px;
+    border-radius: 50px;
+    box-shadow: inset 0.3rem 0.3rem 0.6rem #c8d0e7, inset -0.3rem -0.3rem 0.6rem #fff;
+    height: 40px;
+}
+
+.form_control input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    padding-left: .6rem;
+    border-radius: 15px;
+}
+
+
+.login_section form button{
+    height: 40px;
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    background-image: linear-gradient(to right , #66a1ff ,#2f6dce );
+    background-size: 400% 400%;
+    animation: bg_button 3s ease infinite;
+    box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.3rem -0.3rem 0.6rem #fff;
+    cursor: pointer;
+    color: #fff;
+}
+
+@keyframes bg_button {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 50% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
+

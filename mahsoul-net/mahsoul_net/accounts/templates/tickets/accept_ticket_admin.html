@@ -1,0 +1,28 @@
+{% extends "admin_panel_based/based.html" %}
+{% load static %}
+
+{% block title %}
+	تایید تیکت
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'tickets/styles/accept_ticket_admin.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="top-container">
+        <i class="fa fa-check"></i>
+        <h2>تایید تیکت</h2>
+    </div>
+    <div class="bottom-container">
+        <p>آیا میخواهید کاربر  {{ ticket.requested_user.username }} را تایید کنید؟</p>
+        <div class="btn-bottom-container">
+            <a href="{% url 'accounts:ticket_list' %}" class="btn btn-back">لغو</a>
+            <form action="" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-delete">تایید تیکت</button>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

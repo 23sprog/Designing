@@ -1,0 +1,38 @@
+{% extends "admin_panel_based/based.html" %}
+{% load static %}
+{% block style %}
+	    <link rel="stylesheet" href="{% static "products/styles/product_delete.css" %}">
+{% endblock %}
+{% block title %}
+	{% if request.resolver_match.url_name == "delete_shop" %}
+        حذف فروشگاه
+    {% elif request.resolver_match.url_name == "delete_product" %}
+        حذف محصول
+	{% endif %}
+{% endblock %}
+{% block content %}
+    <div class="top-container">
+        <i class="fa fa-trash-o"></i>
+        <h2>حذف</h2>
+    </div>
+    <div class="bottom-container">
+        <form method="post">
+            {% csrf_token %}
+            <p> آیا میخواهید
+                {% if request.resolver_match.url_name == "delete_product" %}{{ product.name }}
+                {% elif request.resolver_match.url_name == "delete_shop" %}فروشگاه {{ shop.name }}
+                {% endif %}
+                را حذف کنید؟</p>
+            <div class="btn-bottom-container">
+                {% if request.resolver_match.url_name == "delete_shop" %}
+                    <a href="{% url 'products:view_shop' %}" class="btn btn-classic">لغو</a>
+                {% elif request.resolver_match.url_name == "delete_product" %}
+                    <a href="{% url "products:list_product" %}" class="btn btn-classic">لغو</a>
+                {% endif %}
+
+                <button type="submit" class="btn btn-delete">حذف</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

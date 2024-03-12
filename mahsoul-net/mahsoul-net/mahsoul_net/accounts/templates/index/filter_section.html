@@ -1,0 +1,25 @@
+            <div class="filter-product-section based-product-section">
+                <h5>فیلتر محصول</h5>
+                <form action="{% url 'product_filter_main_page' %}" method="get">
+                    <label for="city-selector" class="label-section-based">{{ filter_product_form.city.label }}</label>
+                    {{ filter_product_form.city }}
+{#                    <select id="city-selector" name="city" class="input-section-based">#}
+{#                        <option value="1">تهران</option>#}
+{#                        <option value="2">کرج</option>#}
+{#                        <option value="3">قزوین</option>#}
+{#                    </select>#}
+                    <label for="shop-name" class="label-section-based">{{ filter_product_form.shop_name.label }}</label>
+                    {{ filter_product_form.shop_name }}
+{#                    <input type="text" class="input-section-based" id="shop-name" name="shop-name">#}
+                    <label for="category-selector" class="label-section-based">
+                        {{ filter_product_form.category.label }}
+                    </label>
+                    {{ filter_product_form.category }}
+{#                    <select id="category-selector" name="category" class="input-section-based">#}
+{#                        <option value="1">تنقلات</option>#}
+{#                        <option value="2">شیرینی</option>#}
+{#                        <option value="3">خشکبار</option>#}
+{#                    </select>#}
+                    <button type="submit" class="btn-filter-section">اعمال فیلتر محصولات</button>
+                </form>
+            </div>

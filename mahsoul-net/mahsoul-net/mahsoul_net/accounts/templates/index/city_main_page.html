@@ -1,0 +1,6 @@
+<p class="loaction-text">
+    <i class="fa fa-map-marker"></i>
+    {% for city in cities %}
+    	    <a href="{% url 'city_category' id=city.id %}"><span>{{ city.name }},</span></a>
+    {% endfor %}
+</p>

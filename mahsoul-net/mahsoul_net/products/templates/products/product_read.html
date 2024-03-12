@@ -1,0 +1,111 @@
+{% load static %}
+{% load to_persian_number %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static "fonts/sahel-font-v3.4.0/sahel-fonts.css" %}">
+    <link rel="stylesheet" href="{% static "fonts/rank-font/rank-font.css" %}">
+    <link rel="stylesheet" href="{% static "products/styles/product_read.css" %}">
+    
+{#    <link rel="stylesheet" href="/static/products/styles/product_read.css">#}
+            {% include "inc/main_site/navbar_footer_link.html" %}
+</head>
+<body>
+       {% include "inc/main_site/navbar.html" %}
+
+    <div class="product-view">
+        <div class="product-view-detail">
+            <div class="product-view-detail-photo">
+                <div class="product-view-detail-photo-image">
+                    <img src="{{ product.img.url }}" alt="IMAGE_PRODUCT">
+                    <div class="product-view-detail-photo-price">
+                        <p class="product-view-detail-price"><span class="price-toman-label"> </span> {{ product.price|to_persian_price }}</p>
+                        {% if user.is_authenticated and not user.is_superuser and not user.is_seller %}
+                            <form action="{% url 'products:add_product_cart' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
+                                <div>
+                                    {% if product.has_weight %}
+                                        <label for="count-select" class="count-select-input-label">وزن:</label>
+                                    {% else %}
+                                        <label for="count-select" class="count-select-input-label">تعداد:</label>
+                                    {% endif %}
+                                    <select name="count" id="count-select" class="count-select-input">
+                                        {% for num in list_one_to_ten %}
+                                            {% if product.has_weight %}
+                                                <option value="{{ num }}">{{ num|to_persian }}کیلوگرم</option>
+                                            {% else %}
+                                                <option value="{{ num }}">{{ num|to_persian }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+                                <button class="product-view-detail-btn">اضافه کردن به سبد خرید</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="product-view-detail-description">
+                <h1>{{ product.name }}</h1>
+                <p>{{ product.description }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="shop-view">
+        <p class="shop-rank">
+            {% if product.shop.rank_shop == "a" %}
+                <span class="shop-position a-rank">A</span>
+            {% elif product.shop.rank_shop == "b" %}
+                <span class="shop-position b-rank">B</span>
+            {% elif product.shop.rank_shop == "c" %}
+                <span class="shop-position c-rank">C</span>
+            {% elif product.shop.rank_shop == "d" %}
+                <span class="shop-position d-rank">D</span>
+            {% elif product.shop.rank_shop == "e" %}
+                <span class="shop-position e-rank">E</span>
+            {% elif product.shop.rank_shop == "f" %}
+                <span class="shop-position f-rank">F</span>
+            {% else %}
+                <span class="shop-position o-rank">O</span>
+            {% endif %}
+        </p>
+        <h3 class="shop-name"><a href="{% url 'products:detail_shop' id=product.shop.id %}">{{ product.shop.name }}</a></h3>
+        <p class="shop-loacation">
+            <i class="fa fa-map-marker"></i>
+            {% for city in product.shop.city.all %}
+                <a href="{% url "city_category" id=city.id %}"><span>{{ city.name }}،</span></a>
+            {% endfor %}
+        </p>
+    </div>
+    <div class="comment-view">
+        <h2 class="comment-view-title">نظرات</h2>
+        {% if request.user.is_authenticated %}
+            <form method="post" action="{% url 'products:comment_product' %}" class="comment-view-textbox">
+            {% csrf_token %}
+                <input type="text" required name="text_message" class="comment-textbox-text">
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <button class="comment-textbox-btn" type="submit">ارسال نظر</button>
+            </form>
+        {% endif %}
+        {% if comments %}
+            <div class="comment-view-messages">
+                {% for comment in comments %}
+                <div class="comment-message {% if comment.user == request.user %}green{% else %}white{% endif %}">
+                    <div class="comment-message-username">{{ comment.user }}</div>
+                    <span class="comment-message-text">{{ comment.text_message }} </span>
+                    <span class="comment-message-datetime" style="direction: rtl">{{ comment.created_at|timesince }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    {% include 'index/footer.html' %}
+</body>
+</html>

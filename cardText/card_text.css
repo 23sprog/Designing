@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Poppins' ;
+}
+
+
+
+.container{
+    max-width: 1333px;
+    margin: 5rem auto;
+}
+
+.grid_section{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+    padding: 0 10px;
+}
+
+.card_item{
+    box-shadow: 0 2px 4px rgba(99,99,99,.5);
+    margin: 10px;
+    border-radius: 30px;
+    color: #2e3350;
+    padding: 43px;
+    position: relative;
+    cursor: pointer;
+}
+
+.card_item svg{
+    width: 3.5rem;
+}
+
+.card_item h5{
+    font-size: 1.2rem;
+    margin: 2rem 0;
+}
+
+.card_item::before, .card_item::after{
+    content: '';
+    position: absolute;
+    width: 19%;
+    height: 19%;
+    transition: all 350ms ease;
+}
+
+.card_item::after{
+    bottom: -2px;
+    right: -2px;
+    border-right: 3.5px solid;
+    border-bottom: 3.5px solid;
+    border-bottom-right-radius: 30px;
+}
+
+.card_item::before{
+    top: -2px;
+    left: -2px;
+    border-left: 3.5px solid;
+    border-top: 3.5px solid;
+    border-top-left-radius: 30px;
+}
+
+.survey::before, .survey::after{
+    border-color: #2e3350;
+}
+
+.roocket::before, .roocket::after{
+    border-color: #e73b37;
+}
+
+.diamond::before, .diamond::after{
+    border-color: #2e5266ff;
+}
+
+
+.card_item:hover::before, .card_item:hover::after{
+    width: 85%;
+    height: 85%;
+}

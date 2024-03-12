@@ -1,0 +1,29 @@
+{% extends "admin_panel_based/based.html" %}
+{% load static %}
+
+{% block title %}
+	تیکت
+{% endblock %}
+
+{% block style %}
+	    <link rel="stylesheet" href="{% static "tickets/styles/ticket_main_page_user.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="top-container ">
+        <i class="green fa fa-check"></i>
+        <h2>تیکت شما تایید شد!</h2>
+    </div>
+    <div class="bottom-container">
+        <div class="description-container">
+            <ul class="description-list">
+                <li class="description-item">
+                    به کمک دکمه که در زیر وجود دارد شما میتوانید فروشگاه خود را ساخته و شروع به فعالیت کنید.
+                </li>
+            </ul>
+        </div>
+        <div class="btn-bottom-container">
+            <a href="{% url 'products:create_shop_near_seller' %}" class="btn btn-green">درصورت ایجاد فروشگاه کلیک کنید!</a>
+        </div>
+    </div>
+{% endblock %}

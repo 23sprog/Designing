@@ -1,0 +1,46 @@
+{% extends "admin_panel_based/based.html" %}
+{% load static %}
+{% load to_persian_number %}
+{% block title %}سبد خرید{% endblock %}
+
+{% block style %}
+        <link rel="stylesheet" href="{% static "products/styles/product-cart.css" %}">
+{% endblock %}
+
+{% block content %}
+    {% if has_product_cart %}
+        <div class="container-title">
+            <ul>
+                <li>تصویر محصول</li>
+                <li>نام محصول</li>
+                <li>تعداد</li>
+                <li>قیمت</li>
+                <li class="product-delete-cart-title">حذف محصول از سبد خرید</li>
+            </ul>
+        </div>
+    {% endif %}
+    <div class="container-product-cart">
+        {% for product_cart in product_carts %}
+        <div class="container-product-item">
+            <ul>
+                <li class="product-img-cart"><img src="{{ product_cart.product.img.url }}"></li>
+                <li class="product-name-cart"><a href="{% url 'products:view_product' product_cart.product.id %}">{{ product_cart.product.name }}</a></li>
+                <li class="product-count-cart">{{ product_cart.count|to_persian }}{% if product_cart.product.has_weight %}کیلوگرم{% endif %}</li>
+                <li class="product-price-cart"><span>{{ product_cart.get_overall_price|to_persian }}</span><span class="price-toman-label"></span></li>
+                <li class="product-delete-cart"><a href="{% url 'products:delete_product_cart' product_cart.id %}"><i class="fa fa-trash-o"></i></a></li>
+            </ul>
+        </div>
+        {% empty %}
+            <p style="padding: 50px;font-weight: 700;font-size: 25px">سبد خرید شما خالی است!</p>
+        {% endfor %}
+    </div>
+    {% if has_product_cart %}
+        <div class="container-overall-price">
+            <p>قیمت نهایی: {{ overall_price_carts|to_persian }}<span class="price-toman-label"></span></p>
+            <form action="{% url 'products:final_section_product_cart' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="submit-overall-btn">خرید محصول</button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "admin_panel_based/based.html" %}
+{% load static %}
+{% block title %}بروزرسانی فروشگاه{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static "shops/shop_create.css" %}">
+{% endblock %}
+{% block content %}
+             <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row-1">
+                    <label for="create-name" class="text-name-label">{{ form.name.label }}</label>
+{#                    <input type="text" class="textbox-based create-text-normal" id="create-name" name="name">#}
+                    {{ form.name }}
+                    <span class="validator-based name-validator">{{ form.name.errors|first }}</span>
+                        <label for="category-selector" class="text-category-label">{{ form.seller.label }}</label>
+                        {{ form.seller }}
+                        <span class="validator-based slug-validator">{{ form.seller.errors|first }}</span>
+    {#                    <select id="category-selector" name="seller" class="textbox-based create-text-normal">#}
+    {#                        <option value="1">sprog</option>#}
+    {#                        <option value="2">sprog</option>#}
+    {#                        <option value="3">sprog</option>#}
+    {#                    </select>#}
+                </div>
+                    <div class="row-2">
+                        <label for="rank-shop" class="text-rank-label">{{ form.rank_shop.label }}</label>
+                        {{ form.rank_shop }}
+    {#                    <select id="rank-shop" name="rank_shop" class="textbox-based create-text-large">#}
+    {#                        <option value="1">A</option>#}
+    {#                        <option value="2">B</option>#}
+    {#                        <option value="3">C</option>#}
+    {#                    </select>#}
+                    </div>
+
+                <div class="row-3">
+
+                    <div class="row-3-right-section">
+                        <label for="image-product" class="text-image-label">{{ form.img.label }}</label>
+                        {{ form.img }}
+{#                        <input type="file" id="image-product" name="img" accept="image/png, image/gif, image/jpeg">#}
+                        <span class="validator-based image-validator">{{ form.img.errors|first }}</span>
+                        <div class="is-active-container">
+                            <label for="is-active-product" class="text-active-label">آیا در سایت وجود داشته باشد؟</label>
+{#                            <input type="checkbox" class="checkbox-based" id="is-active-product" name="is_active">#}
+                            {{ form.is_active }}
+                        </div>
+                    </div>
+                    <label for="city-shop" class="text-city-label">{{ form.city.label }}</label>
+                    {{ form.city }}
+                    {{ form.city.errors|first }}
+{#                    <select id="city-shop" multiple name="city" class="shop-city">#}
+{#                        <option value="1">تهران</option>#}
+{#                        <option value="2">کرج</option>#}
+{#                        <option value="3">اراک</option>#}
+{#                    </select>#}
+                </div>
+                <div class="row-4">
+                    <label for="description-product" class="text-description-label">{{ form.description.label }}</label>
+{#                    <textarea name="description" id="description-product" class=""></textarea>#}
+                    {{ form.description }}
+                    {{ form.description.errors|first }}
+                </div>
+                <div class="row-6">
+                    <button class="create-btn" type="submit">اضافه کردن فروشگاه</button>
+                </div>
+
+            </form>        
+{% endblock %}
