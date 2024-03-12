@@ -1,7 +1,14 @@
+@font-face {
+    font-family: "Tanha";
+    font-weight: normal;
+    src: url(../fonts/Tanha-FD.woff2);
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Tanha";
 }
 
 body{
@@ -70,8 +77,8 @@ img{
     box-shadow: 0 123px 32px rgba(0, 0, 0, 0.5), 0 123px 32px rgba(0, 0, 0, 0.4);
     z-index: 1;
     position: absolute;
-    top: 30%;
-    left: 78px;
+    bottom: 105px;
+    left: 30%;
     border-radius: 100%;
 }
 
@@ -82,11 +89,16 @@ img{
 }
 
 .title_product{
-
+    font-size: 1.35rem;
 }
 
 .text_product{
     margin: 1rem 0;
+}
+
+.price_product{
+    font-size: 1.1rem;
+    font-weight: 900;
 }
 
 .add_to_cart{
@@ -102,4 +114,24 @@ img{
 .product_item:hover .caption_item_product .add_to_cart{
     background-color: #feac00;
     color: #fff;
+}
+
+
+@media screen and (max-width:999px) {
+    .container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media screen and (max-width:768px) {
+    .container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width:472px) {
+    .container{
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
