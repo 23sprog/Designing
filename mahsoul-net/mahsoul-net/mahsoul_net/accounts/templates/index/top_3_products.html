@@ -1,8 +1,0 @@
-    <div class="based-top-3-section based-product-section">
-        <h5>{{ title_section }}</h5>
-        <ul>
-            {% for top_3_snack in top_3_snacks %}
-                <li class="top-3-section-link"><a href="{{ top_3_snack.get_absolute_url }}">{{ top_3_snack.name }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
