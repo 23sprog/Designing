@@ -1,32 +1,42 @@
-let products = [
-    {id:1, name:"iphone 13 pro",price:205},
-    {id:1, name:"iphone 13",price:105},
-    {id:2, name:"iphone 15",price:175},
-    {id:3, name:"iphone 12",price:155},
-    {id:4, name:"iphone X",price:199},
-    {id:5, name:"iphone 7",price:90},
-    {id:6, name:"iphone 6",price:22},
-]
+let userWord = prompt("Enter Your Word: ")
+let arrayUserWord = userWord.split('')
+let reverseArrayUserWord = (arrayUserWord.reverse()).join('')
+alert(userWord==reverseArrayUserWord?"!از سر و ته یه معنی میده":"از سر و ته یه معنی نمیده")
 
 
-let productsCart = [
-    {id:1, name:"iphone X",price:199},
-    {id:2, name:"iphone 7",price:90},
-    {id:3, name:"iphone 6",price:22}
-]
 
-let allPrice = 0
 
-let finalProductsCart = productsCart.filter((value)=>{
-    return value.price < 100
-})
 
-productsCart.forEach((value, index, array)=>{
-    allPrice += value.price
-})
 
-console.log(finalProductsCart.length);
-console.log(allPrice+finalProductsCart.length);
+// let products = [
+//     {id:1, name:"iphone 13 pro",price:205},
+//     {id:1, name:"iphone 13",price:105},
+//     {id:2, name:"iphone 15",price:175},
+//     {id:3, name:"iphone 12",price:155},
+//     {id:4, name:"iphone X",price:199},
+//     {id:5, name:"iphone 7",price:90},
+//     {id:6, name:"iphone 6",price:22},
+// ]
+
+
+// let productsCart = [
+//     {id:1, name:"iphone X",price:199},
+//     {id:2, name:"iphone 7",price:90},
+//     {id:3, name:"iphone 6",price:22}
+// ]
+
+// let allPrice = 0
+
+// let finalProductsCart = productsCart.filter((value)=>{
+//     return value.price < 100
+// })
+
+// productsCart.forEach((value, index, array)=>{
+//     allPrice += value.price
+// })
+
+// console.log(finalProductsCart.length);
+// console.log(allPrice+finalProductsCart.length);
 
 
 
@@ -77,38 +87,6 @@ console.log(allPrice+finalProductsCart.length);
 // if (requestUser === '2') {
 //     deleteFromCart(productsCart)
 // }
-
-
-
-// let USER_DATABASE = [
-//     {id:1, username:"erfan", password:"La160197",first_name:"Erfan", last_name:"Ezzati"},
-//     {id:2, username:"amir", password:"La160197",first_name:"falah", last_name:"amiri"},
-//     {id:3, username:"reza", password:"La160197",first_name:"reza", last_name:"golzar"},
-//     {id:4, username:"leito", password:"La160197",first_name:"Behzad", last_name:"Davarpanah"},
-//     {id:5, username:"hidden", password:"La160197",first_name:"Mehrad", last_name:"Hidden"},
-// ]
-
-// let inputUsername
-// let inputPassword
-// let getUser
-// let isAuth = false
-
-// // Authenticating
-// while(isAuth == false){
-//     inputUsername = prompt("Enter Your Username :")
-//     inputPassword = prompt("Enter Your Password :")
-//     USER_DATABASE.some((value)=>{
-//         if(inputUsername == value.username && inputPassword == value.password){
-//             isAuth = true
-//         }
-//     })
-//     if(isAuth == false){
-//         alert("Your Username or Password is incorrect")
-//     }
-//     }
-
-
-
 
 
 //  product add to cart
