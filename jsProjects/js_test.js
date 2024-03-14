@@ -1,7 +1,22 @@
-let userWord = prompt("Enter Your Word: ")
-let arrayUserWord = userWord.split('')
-let reverseArrayUserWord = (arrayUserWord.reverse()).join('')
-alert(userWord==reverseArrayUserWord?"!از سر و ته یه معنی میده":"از سر و ته یه معنی نمیده")
+let state = {
+    alborz:["nazar abad", "karaj", "fardis"],
+    khoozestan:["ahwaz", "dezful", "gambroon"],
+}
+
+let userInput = prompt("Enter Your Destintion : ")
+
+
+console.log(state[userInput]);
+
+
+
+
+
+
+// let userWord = prompt("Enter Your Word: ")
+// let arrayUserWord = userWord.split('')
+// let reverseArrayUserWord = (arrayUserWord.reverse()).join('')
+// alert(userWord==reverseArrayUserWord?"!از سر و ته یه معنی میده":"از سر و ته یه معنی نمیده")
 
 
 
