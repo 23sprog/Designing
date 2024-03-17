@@ -4,9 +4,6 @@ let operator = prompt("Enter operator : ")
 let answer
 
 
-while (operator == ) {
-    
-}
 if(operator === "+"){
     answer = firstNumber + secondsNumber
         alert(answer)
