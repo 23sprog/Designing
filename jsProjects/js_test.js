@@ -1,12 +1,20 @@
-let state = {
-    alborz:["nazar abad", "karaj", "fardis"],
-    khoozestan:["ahwaz", "dezful", "gambroon"],
-}
-
-let userInput = prompt("Enter Your Destintion : ")
 
 
-console.log(state[userInput]);
+let h1Elemment = document.getElementById('title')
+
+h1Elemment.setAttribute('class','first')
+
+console.log(h1Elemment);
+
+// let state = {
+//     alborz:["nazar abad", "karaj", "fardis"],
+//     khoozestan:["ahwaz", "dezful", "gambron"],
+// }
+
+// let userInput = prompt("Enter Your Destintion : ")
+
+
+// console.log(state[userInput]);
 
 
 

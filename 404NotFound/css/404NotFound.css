@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../img/Mars-Wallpaper-HD-Free-download.jpg');
+    background-position: center;
+    position: relative;
+
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .1);
+    backdrop-filter: blur(30px);
+}
+
+.row {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.img-404 {
+    width: 500px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+.img-404 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.text-404 {
+    background-color: #ffc9bb;
+    color: #c61a09;
+    font-weight: 700;
+    font-size: 2.5rem;
+    padding: 10px;
+    width: 35%;
+    text-align: center;
+    border-radius: 22px;
+    margin-top: 30px;
+}
+
+.animate-img{
+    position: absolute;
+    width: 100%;
+    max-width: 180px;
+    animation: animate_pix 2s infinite alternate;
+
+}
+
+.position1{
+    left: 2%;
+    top: 1.5%;
+}
+.position2{
+    left: 2%;
+    bottom: 5%;
+}
+.position3{
+    right: 2%;
+    bottom: 5%;
+}
+.position4{
+    right: 2%;
+    top: 1.5%;
+}
+
+
+.animate-img img{
+    width: 100%;
+}
+
+@keyframes animate_pix {
+    0%{
+        transform: translateY(0px);
+    }
+    100%{
+        transform: translateY(20px);
+    }
+}
