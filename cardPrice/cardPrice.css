@@ -1,0 +1,71 @@
+@font-face {
+    font-family: Tanha;
+    src: url('font/Tanha-FD.woff2') format('woff2');
+    font-weight: normal;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Tanha;
+}
+
+body{
+    background-color: #151515;
+    color: #fff;
+}
+ul{
+    list-style: none;
+}
+
+.card_price_section{
+
+}
+
+.container{
+    padding: 62px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header_title h2{
+    text-align: center;
+    font-size: 1.2rem;
+    
+}
+
+.content_price{
+
+}
+
+.item_price{
+    text-align: center;
+    width: 30%;
+}
+
+.item_price ul{
+
+}
+
+.item_price button{
+    background-color: #f36100;
+    border: none;
+    padding: 15px 28px;
+    color: #fff;
+}
+
+.title_price{
+
+}
+
+.price{
+    margin-bottom: 1rem;
+
+}
+
+.price h3{
+    font-size: 3.5rem;
+    color: #f36100;
+}
